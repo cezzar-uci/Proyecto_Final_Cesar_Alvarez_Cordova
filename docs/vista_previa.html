@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#141c2d" />
+  <meta name="description" content="TaskForge: organiza tus tareas y proyectos con claridad." />
+  <title>Mis tareas | TaskForge</title>
+  <link rel="icon" type="image/svg+xml" href="../public/favicon.svg" />
+  <link rel="stylesheet" href="../public/css/styles.css" />
+  <script src="../public/js/app.js" defer></script>
+</head>
+<body class="app-body">
+  
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+    <a class="brand brand-light" href="/tareas" aria-label="TaskForge, inicio">
+      <span class="brand-mark"><span>✦</span></span><span>taskforge<span class="brand-dot">.</span></span>
+    </a>
+    <p class="sidebar-eyebrow">ESPACIO DE TRABAJO</p>
+    <nav class="side-nav" aria-label="Navegación principal">
+      <a class="side-nav-link active" href="/tareas"><span class="nav-glyph">▦</span> Panel principal</a>
+      <a class="side-nav-link " href="/tareas/nueva"><span class="nav-glyph">✚</span> Nueva tarea</a>
+    </nav>
+    
+  </div>
+  <div class="sidebar-bottom">
+    <div class="sidebar-tip"><span class="sidebar-tip-icon">✳</span><strong>Un paso cada día.</strong><p>Los grandes proyectos se construyen con pequeñas tareas.</p></div>
+    <div class="profile-row"><div class="avatar">C</div><div class="profile-identity"><strong>César Álvarez Córdoba</strong><small>Mi espacio</small></div></div>
+    <form method="post" action="/auth/salir" class="logout-form">
+      <input type="hidden" name="_csrf" value="preview-token" />
+      <button type="submit" class="logout-button"><span>⇥</span> Cerrar sesión</button>
+    </form>
+  </div>
+</aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+  <div class="topbar-start">
+    <button type="button" class="menu-toggle" data-menu-toggle aria-controls="sidebar" aria-expanded="false" aria-label="Mostrar menú">☰</button>
+    <div class="breadcrumb">Espacio de trabajo <span>/</span> <strong>Mis tareas</strong></div>
+  </div>
+  <div class="topbar-end"><span class="live-indicator"></span> Tu espacio está listo <div class="avatar avatar-small">C</div></div>
+</header>
+
+        <div class="main-content">
+          
+
+          <section class="dashboard-intro"><div><div class="section-kicker">TU PANEL DE CONTROL <span>✳</span></div><h1>Hola, César<span class="wave"> 👋</span></h1><p>Aquí tienes un vistazo a todo lo que estás construyendo.</p></div><a href="/tareas/nueva" class="btn btn-dark"><span class="plus-char">＋</span> Nueva tarea</a></section>
+
+<section class="welcome-banner"><div class="welcome-copy"><div class="banner-kicker">✦ PEQUEÑOS PASOS, GRANDES LOGROS</div><h2>Haz que hoy<br/>cuente de verdad.</h2><p>Lo importante no es hacerlo todo, sino avanzar en lo que importa.</p><a href="/tareas/nueva">Organizar mi día <span>↗</span></a></div><div class="banner-visual" aria-hidden="true"><div class="banner-ring ring-1"></div><div class="banner-ring ring-2"></div><div class="banner-card card-a">✓ <span>Idea completada</span></div><div class="banner-card card-b">✦ <span>¡Sigue así!</span></div><div class="banner-big-star">✳</div></div></section>
+
+<section class="stat-grid" aria-label="Resumen de tareas">
+  <article class="stat-card"><div class="stat-card-top"><span class="stat-icon icon-blue">▦</span><span class="stat-meta">EN TOTAL</span></div><strong>12</strong><div class="stat-card-foot">Tareas registradas <span>↗</span></div></article>
+  <article class="stat-card"><div class="stat-card-top"><span class="stat-icon icon-green">✓</span><span class="stat-meta">COMPLETADAS</span></div><strong>5</strong><div class="stat-card-foot">¡Buen trabajo! <span>✦</span></div></article>
+  <article class="stat-card"><div class="stat-card-top"><span class="stat-icon icon-purple">◉</span><span class="stat-meta">EN PROGRESO</span></div><strong>4</strong><div class="stat-card-foot">Ya estás en marcha <span>→</span></div></article>
+  <article class="stat-card"><div class="stat-card-top"><span class="stat-icon icon-peach">⚑</span><span class="stat-meta">PRIORIDAD ALTA</span></div><strong>2</strong><div class="stat-card-foot">Requieren atención <span>!</span></div></article>
+</section>
+
+<section class="tasks-section">
+  <div class="section-head"><div><div class="section-kicker">TU LISTA PERSONAL</div><h2>Mis tareas <span class="task-count">4</span></h2></div><span class="section-helper">Mantén tu día bajo control.</span></div>
+  <form method="get" action="/tareas" class="filters-form" aria-label="Buscar y filtrar tareas">
+    <div class="search-field"><span>⌕</span><input type="search" name="search" value="" maxlength="100" placeholder="Buscar por título o categoría..." aria-label="Buscar tareas" /></div>
+    <div class="filter-field"><select name="status" aria-label="Filtrar por estado"><option value="">Todos los estados</option><option value="pendiente" >Pendientes</option><option value="en_progreso" >En progreso</option><option value="completada" >Completadas</option></select></div>
+    <div class="filter-field"><select name="priority" aria-label="Filtrar por prioridad"><option value="">Toda prioridad</option><option value="baja" >Baja</option><option value="media" >Media</option><option value="alta" >Alta</option></select></div>
+    <button class="btn btn-dark btn-filter" type="submit">Filtrar</button><a href="/tareas" class="reset-filter" title="Limpiar filtros">Limpiar</a>
+  </form>
+  
+    <div class="table-container"><table class="task-table"><thead><tr><th>TAREA</th><th>PRIORIDAD</th><th>ESTADO</th><th>VENCIMIENTO</th><th></th></tr></thead><tbody>
+    
+      <tr><td><a class="task-title" href="/tareas/12"><span class="task-dot ">·</span><span><strong>Preparar presentación final</strong><small>Universidad</small></span></a></td>
+      <td><span class="priority-badge priority-alta"><span>●</span> Alta</span></td>
+      <td><span class="status-badge status-en_progreso"><span>●</span> En progreso</span></td>
+      <td class="due-cell">2026-11-21</td>
+      
+      <td class="table-actions"><a href="/tareas/12" title="Ver detalle" aria-label="Ver Preparar presentación final">↗</a></td></tr>
+    
+      <tr><td><a class="task-title" href="/tareas/13"><span class="task-dot ">·</span><span><strong>Terminar proyecto de Node.js</strong><small>Desarrollo</small></span></a></td>
+      <td><span class="priority-badge priority-alta"><span>●</span> Alta</span></td>
+      <td><span class="status-badge status-pendiente"><span>●</span> Pendiente</span></td>
+      <td class="due-cell">2026-11-25</td>
+      
+      <td class="table-actions"><a href="/tareas/13" title="Ver detalle" aria-label="Ver Terminar proyecto de Node.js">↗</a></td></tr>
+    
+      <tr><td><a class="task-title" href="/tareas/14"><span class="task-dot task-dot-done">✓</span><span><strong>Organizar material de estudio</strong><small>Personal</small></span></a></td>
+      <td><span class="priority-badge priority-media"><span>●</span> Media</span></td>
+      <td><span class="status-badge status-completada"><span>●</span> Completada</span></td>
+      <td class="due-cell">2026-11-28</td>
+      
+      <td class="table-actions"><a href="/tareas/14" title="Ver detalle" aria-label="Ver Organizar material de estudio">↗</a></td></tr>
+    
+      <tr><td><a class="task-title" href="/tareas/15"><span class="task-dot ">·</span><span><strong>Diseñar una landing page</strong><small>Diseño</small></span></a></td>
+      <td><span class="priority-badge priority-baja"><span>●</span> Baja</span></td>
+      <td><span class="status-badge status-pendiente"><span>●</span> Pendiente</span></td>
+      <td class="due-cell">Sin fecha</td>
+      
+      <td class="table-actions"><a href="/tareas/15" title="Ver detalle" aria-label="Ver Diseñar una landing page">↗</a></td></tr>
+    
+    </tbody></table></div>
+    <div class="table-footer"><span>Mostrando 1–4 de 4 tareas</span><div class="pagination">
+      
+      
+      <span>Página 1 de 1</span>
+      
+    </div></div>
+  
+</section>
+
+        </div>
+        <footer class="site-footer"><span>© 2026 TaskForge</span><span>Proyecto académico desarrollado por <strong>César Álvarez Córdoba</strong></span></footer>
+
+      </main>
+    </div>
+  
+</body>
+</html>

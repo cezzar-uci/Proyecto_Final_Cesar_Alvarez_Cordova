@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#141c2d" />
+  <meta name="description" content="TaskForge: organiza tus tareas y proyectos con claridad." />
+  <title><%= title %> | TaskForge</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script src="/js/app.js" defer></script>
+</head>
+<body class="<%= user ? 'app-body' : 'public-body' %>">
+  <% if (user) { %>
+    <div class="app-shell">
+      <%- include('../partials/sidebar') %>
+      <main class="main-panel">
+        <%- include('../partials/topbar') %>
+        <div class="main-content">
+          <%- include('../partials/flash') %>
+          <%- body %>
+        </div>
+        <%- include('../partials/footer') %>
+      </main>
+    </div>
+  <% } else { %>
+    <%- include('../partials/publicHeader') %>
+    <main class="public-main">
+      <%- include('../partials/flash') %>
+      <%- body %>
+    </main>
+    <%- include('../partials/footer') %>
+  <% } %>
+</body>
+</html>

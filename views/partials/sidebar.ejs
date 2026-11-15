@@ -1,0 +1,24 @@
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+    <a class="brand brand-light" href="/tareas" aria-label="TaskForge, inicio">
+      <span class="brand-mark"><span>✦</span></span><span>taskforge<span class="brand-dot">.</span></span>
+    </a>
+    <p class="sidebar-eyebrow">ESPACIO DE TRABAJO</p>
+    <nav class="side-nav" aria-label="Navegación principal">
+      <a class="side-nav-link <%= title === 'Mis tareas' ? 'active' : '' %>" href="/tareas"><span class="nav-glyph">▦</span> Panel principal</a>
+      <a class="side-nav-link <%= title === 'Nueva tarea' ? 'active' : '' %>" href="/tareas/nueva"><span class="nav-glyph">✚</span> Nueva tarea</a>
+    </nav>
+    <% if (user.role === 'admin') { %>
+      <div class="admin-badge"><span>★</span> Vista de administrador</div>
+      <p class="sidebar-caption">Puedes revisar y eliminar tareas de todos los usuarios.</p>
+    <% } %>
+  </div>
+  <div class="sidebar-bottom">
+    <div class="sidebar-tip"><span class="sidebar-tip-icon">✳</span><strong>Un paso cada día.</strong><p>Los grandes proyectos se construyen con pequeñas tareas.</p></div>
+    <div class="profile-row"><div class="avatar"><%= user.name.substring(0,1).toUpperCase() %></div><div class="profile-identity"><strong><%= user.name %></strong><small><%= user.role === 'admin' ? 'Administrador' : 'Mi espacio' %></small></div></div>
+    <form method="post" action="/auth/salir" class="logout-form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <button type="submit" class="logout-button"><span>⇥</span> Cerrar sesión</button>
+    </form>
+  </div>
+</aside>

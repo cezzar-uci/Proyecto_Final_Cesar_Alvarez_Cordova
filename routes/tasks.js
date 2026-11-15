@@ -1,0 +1,14 @@
+'use strict';
+const router = require('express').Router();
+const ctrl = require('../controllers/taskController');
+const asyncHandler = require('../middlewares/asyncHandler');
+const { requireAuth } = require('../middlewares/auth');
+router.use(requireAuth);
+router.get('/', asyncHandler(ctrl.index));
+router.get('/nueva', ctrl.showNew);
+router.post('/', asyncHandler(ctrl.create));
+router.get('/:id(\\d+)', asyncHandler(ctrl.show));
+router.get('/:id(\\d+)/editar', asyncHandler(ctrl.showEdit));
+router.post('/:id(\\d+)/editar', asyncHandler(ctrl.update));
+router.post('/:id(\\d+)/eliminar', asyncHandler(ctrl.remove));
+module.exports = router;

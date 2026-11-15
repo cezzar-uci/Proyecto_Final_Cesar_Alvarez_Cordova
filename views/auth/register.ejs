@@ -1,0 +1,18 @@
+<section class="auth-page">
+  <div class="auth-decoration auth-decoration-alt"><div class="auth-decoration-content"><div class="auth-symbol">✦</div><h2>Cada gran logro<br/>comienza por una tarea.</h2><p>Construye hábitos, cumple metas y dale un hogar a todas tus ideas.</p><div class="auth-quote">Tu nueva etapa empieza aquí.</div></div></div>
+  <div class="auth-panel"><div class="auth-card">
+    <div class="eyebrow-pill eyebrow-small">COMIENZA TU CAMINO</div>
+    <h1>Crea tu<br/>cuenta<span class="accent-dot">.</span></h1>
+    <p class="auth-intro">Un minuto para registrarte. Todo el tiempo para crecer.</p>
+    <% if (errors.length) { %><div class="alert alert-error" role="alert"><span>!</span><div><% errors.forEach(e => { %><div><%= e %></div><% }) %></div></div><% } %>
+    <form action="/auth/registro" method="post" class="stack-form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <label for="name">Nombre completo</label><input id="name" name="name" type="text" placeholder="Tu nombre" autocomplete="name" value="<%= values.name %>" maxlength="90" minlength="2" required />
+      <label for="email">Correo electrónico</label><input id="email" name="email" type="email" placeholder="nombre@correo.com" autocomplete="email" value="<%= values.email %>" maxlength="180" required />
+      <label for="password">Contraseña <small>(mínimo 10 caracteres)</small></label><input id="password" name="password" type="password" placeholder="Crea una contraseña segura" autocomplete="new-password" minlength="10" maxlength="72" required />
+      <label for="confirmPassword">Confirmar contraseña</label><input id="confirmPassword" name="confirmPassword" type="password" placeholder="Repite la contraseña" autocomplete="new-password" required />
+      <button class="btn btn-dark btn-form" type="submit">Crear mi cuenta <span>→</span></button>
+    </form>
+    <p class="auth-bottom">¿Ya tienes una cuenta? <a href="/auth/iniciar-sesion">Inicia sesión</a></p>
+  </div></div>
+</section>

@@ -1,0 +1,16 @@
+<section class="auth-page">
+  <div class="auth-decoration"><div class="auth-decoration-content"><div class="auth-symbol">✳</div><h2>Haz espacio para<br/>lo que importa.</h2><p>Las mejores ideas merecen una lista clara y un plan para hacerlas realidad.</p><div class="auth-quote">«El secreto de avanzar es comenzar.»</div></div></div>
+  <div class="auth-panel"><div class="auth-card">
+    <div class="eyebrow-pill eyebrow-small">QUÉ BUENO VERTE</div>
+    <h1>Bienvenido<br/>de nuevo<span class="accent-dot">.</span></h1>
+    <p class="auth-intro">Accede a tu espacio y sigue donde lo dejaste.</p>
+    <% if (errors.length) { %><div class="alert alert-error" role="alert"><span>!</span><div><% errors.forEach(e => { %><div><%= e %></div><% }) %></div></div><% } %>
+    <form action="/auth/iniciar-sesion" method="post" class="stack-form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <label for="email">Correo electrónico</label><input id="email" name="email" type="email" placeholder="nombre@correo.com" autocomplete="email" value="<%= email %>" required maxlength="180" />
+      <label for="password">Contraseña</label><input id="password" name="password" type="password" placeholder="Tu contraseña" autocomplete="current-password" required />
+      <button class="btn btn-dark btn-form" type="submit">Iniciar sesión <span>→</span></button>
+    </form>
+    <p class="auth-bottom">¿Todavía no tienes cuenta? <a href="/auth/registro">Regístrate aquí</a></p>
+  </div></div>
+</section>

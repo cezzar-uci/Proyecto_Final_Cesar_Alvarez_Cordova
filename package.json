@@ -1,0 +1,31 @@
+{
+  "name": "taskforge-proyecto-final",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Proyecto final de Node.js: TaskForge, gestor de tareas con MVC, PostgreSQL, EJS y JWT.",
+  "author": "César Álvarez Córdoba",
+  "license": "UNLICENSED",
+  "main": "app.js",
+  "engines": { "node": ">=22 <25" },
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js",
+    "db:init": "node scripts/initDb.js",
+    "test": "node --test tests/*.test.js",
+    "check": "node scripts/checkSyntax.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-rate-limit": "^7.5.0",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.3"
+  },
+  "devDependencies": {}
+}

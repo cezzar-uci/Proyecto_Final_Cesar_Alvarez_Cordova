@@ -1,0 +1,40 @@
+<section class="dashboard-intro"><div><div class="section-kicker">TU PANEL DE CONTROL <span>✳</span></div><h1>Hola, <%= user.name.split(' ')[0] %><span class="wave"> 👋</span></h1><p>Aquí tienes un vistazo a todo lo que estás construyendo.</p></div><a href="/tareas/nueva" class="btn btn-dark"><span class="plus-char">＋</span> Nueva tarea</a></section>
+
+<section class="welcome-banner"><div class="welcome-copy"><div class="banner-kicker">✦ PEQUEÑOS PASOS, GRANDES LOGROS</div><h2>Haz que hoy<br/>cuente de verdad.</h2><p>Lo importante no es hacerlo todo, sino avanzar en lo que importa.</p><a href="/tareas/nueva">Organizar mi día <span>↗</span></a></div><div class="banner-visual" aria-hidden="true"><div class="banner-ring ring-1"></div><div class="banner-ring ring-2"></div><div class="banner-card card-a">✓ <span>Idea completada</span></div><div class="banner-card card-b">✦ <span>¡Sigue así!</span></div><div class="banner-big-star">✳</div></div></section>
+
+<section class="stat-grid" aria-label="Resumen de tareas">
+  <article class="stat-card"><div class="stat-card-top"><span class="stat-icon icon-blue">▦</span><span class="stat-meta">EN TOTAL</span></div><strong><%= stats.total %></strong><div class="stat-card-foot">Tareas registradas <span>↗</span></div></article>
+  <article class="stat-card"><div class="stat-card-top"><span class="stat-icon icon-green">✓</span><span class="stat-meta">COMPLETADAS</span></div><strong><%= stats.completed %></strong><div class="stat-card-foot">¡Buen trabajo! <span>✦</span></div></article>
+  <article class="stat-card"><div class="stat-card-top"><span class="stat-icon icon-purple">◉</span><span class="stat-meta">EN PROGRESO</span></div><strong><%= stats.in_progress %></strong><div class="stat-card-foot">Ya estás en marcha <span>→</span></div></article>
+  <article class="stat-card"><div class="stat-card-top"><span class="stat-icon icon-peach">⚑</span><span class="stat-meta">PRIORIDAD ALTA</span></div><strong><%= stats.urgent %></strong><div class="stat-card-foot">Requieren atención <span>!</span></div></article>
+</section>
+
+<section class="tasks-section">
+  <div class="section-head"><div><div class="section-kicker"><%= user.role === 'admin' ? 'VISTA GLOBAL' : 'TU LISTA PERSONAL' %></div><h2><%= user.role === 'admin' ? 'Todas las tareas' : 'Mis tareas' %> <span class="task-count"><%= total %></span></h2></div><span class="section-helper">Mantén tu día bajo control.</span></div>
+  <form method="get" action="/tareas" class="filters-form" aria-label="Buscar y filtrar tareas">
+    <div class="search-field"><span>⌕</span><input type="search" name="search" value="<%= filters.search %>" maxlength="100" placeholder="Buscar por título o categoría..." aria-label="Buscar tareas" /></div>
+    <div class="filter-field"><select name="status" aria-label="Filtrar por estado"><option value="">Todos los estados</option><option value="pendiente" <%= filters.status === 'pendiente' ? 'selected' : '' %>>Pendientes</option><option value="en_progreso" <%= filters.status === 'en_progreso' ? 'selected' : '' %>>En progreso</option><option value="completada" <%= filters.status === 'completada' ? 'selected' : '' %>>Completadas</option></select></div>
+    <div class="filter-field"><select name="priority" aria-label="Filtrar por prioridad"><option value="">Toda prioridad</option><option value="baja" <%= filters.priority === 'baja' ? 'selected' : '' %>>Baja</option><option value="media" <%= filters.priority === 'media' ? 'selected' : '' %>>Media</option><option value="alta" <%= filters.priority === 'alta' ? 'selected' : '' %>>Alta</option></select></div>
+    <button class="btn btn-dark btn-filter" type="submit">Filtrar</button><a href="/tareas" class="reset-filter" title="Limpiar filtros">Limpiar</a>
+  </form>
+  <% if (!tasks.length) { %>
+    <div class="empty-state"><div class="empty-art">✳</div><h3><%= total === 0 && !filters.search && !filters.status && !filters.priority ? 'El primer paso empieza aquí.' : 'No encontramos coincidencias.' %></h3><p><%= total === 0 && !filters.search && !filters.status && !filters.priority ? 'Todavía no hay tareas en tu espacio. Crea una y comienza a avanzar.' : 'Prueba con otra búsqueda o ajusta los filtros.' %></p><a class="btn btn-dark" href="/tareas/nueva">＋ Crear tarea</a></div>
+  <% } else { %>
+    <div class="table-container"><table class="task-table"><thead><tr><th>TAREA</th><th>PRIORIDAD</th><th>ESTADO</th><th>VENCIMIENTO</th><% if (user.role === 'admin') { %><th>CREADA POR</th><% } %><th></th></tr></thead><tbody>
+    <% tasks.forEach(task => { %>
+      <tr><td><a class="task-title" href="/tareas/<%= task.id %>"><span class="task-dot <%= task.status === 'completada' ? 'task-dot-done' : '' %>"><%= task.status === 'completada' ? '✓' : '·' %></span><span><strong><%= task.title %></strong><small><%= task.category %></small></span></a></td>
+      <td><span class="priority-badge priority-<%= task.priority %>"><span>●</span> <%= {baja:'Baja', media:'Media', alta:'Alta'}[task.priority] %></span></td>
+      <td><span class="status-badge status-<%= task.status %>"><span>●</span> <%= {pendiente:'Pendiente', en_progreso:'En progreso', completada:'Completada'}[task.status] %></span></td>
+      <td class="due-cell"><%= task.due_date || 'Sin fecha' %></td>
+      <% if (user.role === 'admin') { %><td class="owner-cell"><%= task.owner_name %></td><% } %>
+      <td class="table-actions"><a href="/tareas/<%= task.id %>" title="Ver detalle" aria-label="Ver <%= task.title %>">↗</a></td></tr>
+    <% }) %>
+    </tbody></table></div>
+    <div class="table-footer"><span>Mostrando <%= (page-1)*limit + 1 %>–<%= Math.min(page*limit,total) %> de <%= total %> tareas</span><div class="pagination">
+      <% const qp = new URLSearchParams({ search: filters.search, status: filters.status, priority: filters.priority }); %>
+      <% if (page > 1) { qp.set('page', page - 1); %><a href="/tareas?<%= qp.toString() %>" aria-label="Página anterior">← Anterior</a><% } %>
+      <span>Página <%= page %> de <%= pages %></span>
+      <% if (page < pages) { qp.set('page', page + 1); %><a href="/tareas?<%= qp.toString() %>" aria-label="Página siguiente">Siguiente →</a><% } %>
+    </div></div>
+  <% } %>
+</section>
