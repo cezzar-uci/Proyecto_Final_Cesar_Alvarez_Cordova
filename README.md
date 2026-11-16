@@ -163,16 +163,6 @@ El repositorio incluye `render.yaml` para crear el servicio web. **Para que la a
 
 Puedes ver el aspecto del panel en `docs/vista_previa_escritorio.png` y `docs/vista_previa_movil.png`. También está disponible `docs/vista_previa.html` para visualizar el diseño estático sin iniciar el servidor. Son **datos de muestra**, no capturas de un servidor en producción. Para explicar el proyecto en clase, consulta `docs/GUIA_DE_PRESENTACION.md`.
 
-## Entrega al profesor
-
-- [x] Código fuente con arquitectura MVC.
-- [x] CRUD y base PostgreSQL real (pendiente de conectarla en el entorno que lo ejecute).
-- [x] JWT, bcrypt y dos roles.
-- [x] Vistas EJS con layout y componentes reutilizables.
-- [x] README, Docker, pruebas, búsqueda, filtros y paginación.
-- [ ] **Pendiente externo:** subir a GitHub e invitar al profesor.
-- [ ] **Pendiente externo:** desplegar en Render y entregar la URL pública HTTPS funcional.
-
 ## Autoría
 
 **César Álvarez Córdoba**. Proyecto Final del Optativo de Node.js.
